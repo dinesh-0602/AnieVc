@@ -11,8 +11,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
-    return newImage
+    return image.resize((newWidth, newHeight))
 
 
 async def gen_thumb(thumbnail, title, userid, theme, ctitle):
@@ -32,14 +31,13 @@ async def gen_thumb(thumbnail, title, userid, theme, ctitle):
     img = Image.open(f"search/temp{userid}.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("cache/finalfont.ttf", 60)
-    font2 = ImageFont.truetype("cache/finalfont.ttf", 70)     
+    font2 = ImageFont.truetype("cache/finalfont.ttf", 70)
     draw.text((20, 45), f"{title[:30]}...", fill= "white", stroke_width = 1, stroke_fill="white", font=font2)
     draw.text((120, 595), f"Playing on: {ctitle[:20]}...", fill="white", stroke_width = 1, stroke_fill="white" ,font=font)
     img.save(f"search/final{userid}.png")
     os.remove(f"search/temp{userid}.png")
-    os.remove(f"search/thumb{userid}.png") 
-    final = f"search/final{userid}.png"
-    return final
+    os.remove(f"search/thumb{userid}.png")
+    return f"search/final{userid}.png"
 
 
 
@@ -50,5 +48,4 @@ async def down_thumb(thumbnail, userid):
                 f = await aiofiles.open(f"search/thumb{userid}.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-    final = f"search/thumb{userid}.png"
-    return final
+    return f"search/thumb{userid}.png"

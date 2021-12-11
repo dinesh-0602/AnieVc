@@ -39,11 +39,10 @@ async def theme_func(_, message):
         pass
     for served_chat in served_chatss:
         try:
-            await remove_active_chat(served_chat)   
+            await remove_active_chat(served_chat)
         except Exception as e:
             await message.reply_text(f"{e}")
-            pass    
-    x = await message.reply_text(f"__Restarting Music!__")   
+    x = await message.reply_text('__Restarting Music!__')
     await start_restart_stage(x.chat.id, x.message_id)
     os.execvp(f"python{str(pyver.split(' ')[0])[:3]}", [
               f"python{str(pyver.split(' ')[0])[:3]}", "-m", "Music"])

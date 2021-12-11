@@ -17,9 +17,7 @@ async def get_active_chats() -> list:
     
 async def is_active_chat(chat_id: int) -> bool:
     chat = await pytgdb.find_one({"chat_id": chat_id})
-    if not chat:
-        return False
-    return True
+    return bool(chat)
 
 async def add_active_chat(chat_id: int):
     is_served = await is_active_chat(chat_id)
@@ -38,9 +36,7 @@ async def remove_active_chat(chat_id: int):
     
 async def is_music_playing(chat_id: int) -> bool:
     chat = await admindb.find_one({"chat_id_toggle": chat_id})
-    if not chat:
-        return True
-    return False
+    return not chat
 
 async def music_on(chat_id: int):
     is_karma = await is_music_playing(chat_id)
