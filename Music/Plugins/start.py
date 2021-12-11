@@ -30,22 +30,33 @@ def start_pannel():
     ]
     return "🎛  **This is Music Music Bot**", buttons
 
-pstart_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("💞 Sᴜᴍᴍᴏɴ Mᴇ 💞", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
-                ], 
-                [InlineKeyboardButton("🧰 Cᴏᴍᴍᴀɴᴅꜱ 🧰", url=f"https://telegra.ph/Music-Bot-12-05")],
-                [
-                    InlineKeyboardButton(
-                        "📢 Uᴘᴅᴀᴛᴇꜱ 📢", url=f"https://t.me/Aniebots"), 
-                    InlineKeyboardButton(
-                        "💬 Sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/Aniebotsupports")
-                ],
-                [ InlineKeyboardButton("🧑‍💻 Sᴏᴜʀᴄᴇ Cᴏᴅᴇ 🧑‍💻", url=f"https://GitHub.com/Anieteam/Anievc"),]
+pstart_markup = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                "💞 Sᴜᴍᴍᴏɴ Mᴇ 💞",
+                url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                "🧰 Cᴏᴍᴍᴀɴᴅꜱ 🧰", url='https://telegra.ph/Music-Bot-12-05'
+            )
+        ],
+        [
+            InlineKeyboardButton("📢 Uᴘᴅᴀᴛᴇꜱ 📢", url='https://t.me/Aniebots'),
+            InlineKeyboardButton(
+                "💬 Sᴜᴘᴘᴏʀᴛ 💬", url='https://t.me/Aniebotsupports'
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                "🧑‍💻 Sᴏᴜʀᴄᴇ Cᴏᴅᴇ 🧑‍💻", url='https://GitHub.com/Anieteam/Anievc'
+            )
+        ],
+    ]
+)
 
-            ]
-        )
 welcome_captcha_group = 2
 @app.on_message(filters.new_chat_members, group=welcome_captcha_group)
 async def welcome(_, message: Message):
@@ -63,7 +74,11 @@ async def welcome(_, message: Message):
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
                 out = start_pannel()
-                await message.reply_text(f"Welcome To Anie Music\n\nPromote me as administrator in your group otherwise I will not function properly.", reply_markup=InlineKeyboardMarkup(out[1]))
+                await message.reply_text(
+                    'Welcome To Anie Music\n\nPromote me as administrator in your group otherwise I will not function properly.',
+                    reply_markup=InlineKeyboardMarkup(out[1]),
+                )
+
                 return
         except:
             return

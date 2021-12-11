@@ -19,10 +19,8 @@ from Music.config import MONGO_DB_URI as smex
 @app.on_message(filters.command("mstats") & ~filters.edited)
 async def gstats(_, message):
     m = await message.reply_text("**Getting Stats...**\n\nPlease wait for some time...")
-    served_chats = []
     chats = await get_served_chats()
-    for chat in chats:
-        served_chats.append(int(chat["chat_id"]))
+    served_chats = [int(chat["chat_id"]) for chat in chats]
     blocked = await get_gbans_count()
     sudoers = await get_sudoers()
     j = 0
@@ -31,7 +29,7 @@ async def gstats(_, message):
             user = await app.get_users(user_id)
             j += 1
         except Exception:
-            continue                     
+            continue
     modules_count ="290"
     pytg_version ="1.9.7 Release Beta Candidate 15"
     file_on_module ="2500"
